@@ -3,71 +3,34 @@ let currentFilter = 'all';
 
 document.addEventListener('DOMContentLoaded', loadHabits);
 
+// --- Funções de UI (filterHabits, updateCounters, updateRanking, toggleTheme) [SEM ALTERAÇÃO] ---
+
 function filterHabits(category) {
-    currentFilter = category;
-    document.querySelectorAll('.menu-item').forEach(btn => btn.classList.remove('active'));
-    const btnId = category === 'all' ? 'btn-all' : `btn-${category}`;
-    const activeBtn = document.getElementById(btnId);
-    if(activeBtn) activeBtn.classList.add('active');
-    loadHabits();
+// ... código sem alteração ...
 }
 
 function updateCounters(habits) {
-    const totalBtn = document.querySelector('#btn-all .counter');
-    if(totalBtn) totalBtn.innerText = habits.length;
-    const categories = ['Saúde', 'Estudos', 'Lazer', 'Trabalho', 'Outros'];
-    categories.forEach(cat => {
-        const count = habits.filter(h => h.category === cat).length;
-        const btn = document.getElementById(`btn-${cat}`);
-        if(btn) {
-            btn.querySelector('.counter').innerText = count;
-        }
-    });
+// ... código sem alteração ...
 }
 
 function updateRanking(habits) {
-    const counts = {};
-    habits.forEach(h => {
-        const cat = h.category || 'Geral';
-        counts[cat] = (counts[cat] || 0) + (h.streak || 0);
-    });
-    const sortedCategories = Object.entries(counts)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 3);
-    const list = document.getElementById('rankingList');
-    if (sortedCategories.length === 0 || sortedCategories[0][1] === 0) {
-        list.innerHTML = '<li class="ranking-empty">Comece sua jornada!</li>';
-        return;
-    }
-    list.innerHTML = ''; 
-    sortedCategories.forEach(([category, count]) => {
-        const li = document.createElement('li');
-        li.className = 'ranking-item';
-        li.innerHTML = `
-            <span>${category}</span>
-            <span class="rank-count">${count}</span>
-        `;
-        list.appendChild(li);
-    });
+// ... código sem alteração ...
 }
 
 function toggleTheme() {
-    const body = document.body;
-    const btn = document.getElementById('theme-btn');
-    body.classList.toggle('dark-mode');
-    if (body.classList.contains('dark-mode')) {
-        btn.innerHTML = '<i class="fas fa-sun"></i> Modo Claro';
-    } else {
-        btn.innerHTML = '<i class="fas fa-moon"></i> Modo Escuro';
-    }
+// ... código sem alteração ...
 }
+
+// ------------------------------------------------------------------------------------------------
 
 async function loadHabits() {
     try {
-        const response = await fetch(API_URL);
+        // [AJUSTE AQUI]: Adiciona /api/habits
+        const response = await fetch(`${API_URL}/api/habits`);
         const allHabits = await response.json();
         updateCounters(allHabits);
         updateRanking(allHabits);
+        // ... restante do código sem alteração ...
         const list = document.getElementById('habitList');
         list.innerHTML = '';
         const filteredHabits = allHabits.filter(habit => {
@@ -115,7 +78,8 @@ async function addHabit() {
     const category = categoryInput.value;
     if (!name) return alert('Digite um hábito!');
     try {
-        await fetch(API_URL, {
+        // [AJUSTE AQUI]: Adiciona /api/habits
+        await fetch(`${API_URL}/api/habits`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, category, habit_time }) 
@@ -130,7 +94,8 @@ async function addHabit() {
 
 async function toggleHabit(id, completed, buttonElement) {
     try {
-        const response = await fetch(`${API_URL}/${id}`, {
+        // [AJUSTE AQUI]: Adiciona /api/habits
+        const response = await fetch(`${API_URL}/api/habits/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ completed })
@@ -156,7 +121,8 @@ async function toggleHabit(id, completed, buttonElement) {
 
 async function deleteHabit(id) {
     try {
-        await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+        
+        await fetch(`${API_URL}/api/habits/${id}`, { method: 'DELETE' });
         loadHabits();
     } catch (error) {
         alert("Erro ao deletar!");
