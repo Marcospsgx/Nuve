@@ -12,14 +12,10 @@ app.use(express.static('public'));
 
 
 const pool = new Pool({
-  
-    connectionString: process.env.DATABASE_URL || `postgresql://postgres:mickeymaluco0@localhost:5432/habit_tracker_db`,
     
+    connectionString: process.env.DATABASE_URL || 'postgresql://postgres:mickeymaluco0@localhost:5432/projeto',
     
-    ssl: {
-        rejectUnauthorized: false 
-    }
-});
+    ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false});
 
 
 
