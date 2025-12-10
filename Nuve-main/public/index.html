@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nuve</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="icon" href="imgs/nuve.icon.png" type="image/png">
+</head>
+<body>
+    
+    <button id="mobile-menu-btn" class="menu-toggle">
+    <i class="fas fa-bars"></i>
+</button>
+
+
+    <div class="app-layout">
+        
+        <aside class="sidebar">
+            <h1 class="logo">
+                <i class="fas fa-cloud"></i>
+                Nuve
+            </h1>
+            <p class="subtitle">Suas conquistas diárias</p>
+
+            <nav class="menu">
+                <button onclick="filterHabits('all')" class="menu-item active" id="btn-all">
+                    <div><i class="fas fa-th-large"></i> Todos</div>
+                    <span class="counter">0</span>
+                </button>
+                
+                <button onclick="filterHabits('Saúde')" class="menu-item" id="btn-Saúde">
+                    <div><i class="fas fa-heartbeat"></i> Saúde</div>
+                    <span class="counter">0</span>
+                </button>
+                
+                <button onclick="filterHabits('Estudos')" class="menu-item" id="btn-Estudos">
+                    <div><i class="fas fa-book"></i> Estudos</div>
+                    <span class="counter">0</span>
+                </button>
+                
+                <button onclick="filterHabits('Lazer')" class="menu-item" id="btn-Lazer">
+                    <div><i class="fas fa-gamepad"></i> Lazer</div>
+                    <span class="counter">0</span>
+                </button>
+                
+                <button onclick="filterHabits('Trabalho')" class="menu-item" id="btn-Trabalho">
+                    <div><i class="fas fa-briefcase"></i> Trabalho</div>
+                    <span class="counter">0</span>
+                </button>
+
+                <button onclick="filterHabits('Outros')" class="menu-item" id="btn-Outros">
+                    <div><i class="fas fa-ellipsis-h"></i> Outros</div>
+                    <span class="counter">0</span>
+                </button>
+            </nav>
+
+            <div class="ranking-section">
+                <h3><i class="fas fa-trophy"></i> Top Conquistas</h3>
+                <ul id="rankingList">
+                    <li class="ranking-empty">Carregando...</li>
+                </ul>
+            </div>
+
+            <div class="theme-switch">
+                <button onclick="toggleTheme()" id="theme-btn">
+                    <i class="fas fa-moon"></i> Modo Escuro
+                </button>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <div class="container">
+                
+                <div class="input-group">
+                    <input type="text" id="habitInput" placeholder="Novo hábito (ex: Ler livro)...">
+                    
+                    <input type="time" id="timeInput" required>
+                    
+                    <select id="categoryInput">
+                        <option value="Saúde">Saúde</option>
+                        <option value="Estudos">Estudos</option>
+                        <option value="Lazer">Lazer</option>
+                        <option value="Trabalho">Trabalho</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                
+                    <button class="add-btn" onclick="addHabit()">+</button>
+                </div>
+        
+                <ul id="habitList">
+                    </ul>
+
+            </div>
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
