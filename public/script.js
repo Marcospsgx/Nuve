@@ -1,4 +1,4 @@
-const API_URL = 'https://nuve-1.onrender.com/api/habits';
+const API_URL = 'https://nuve-1.onrender.com';
 let currentFilter = 'all';
 
 document.addEventListener('DOMContentLoaded', loadHabits);
