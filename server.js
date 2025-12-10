@@ -12,13 +12,14 @@ app.use(express.static('public'));
 
 
 const pool = new Pool({
-    user: 'postgres',        
-    host: 'localhost',       
-    database: 'projeto', 
-    password: 'mickeymaluco0',  
-    port: 5432,
+  
+    connectionString: process.env.DATABASE_URL || `postgresql://postgres:mickeymaluco0@localhost:5432/habit_tracker_db`,
+    
+    
+    ssl: {
+        rejectUnauthorized: false 
+    }
 });
-
 
 
 
