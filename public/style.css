@@ -456,3 +456,40 @@ body.dark-mode li.completed .btn-check {
     50% { transform: translate(-50%, -50%) scale(1.2); }
     100% { transform: translate(-50%, -50%) scale(1); }
 }
+
+@media (max-width: 768px) {
+    
+    .container, .app-wrapper {
+        width: 95% !important;
+        padding: 10px !important;
+        margin: 10px auto !important;
+    }
+
+    /* Empilha os inputs (Nome, Tempo, Categoria) um embaixo do outro */
+    .input-group, form, .controls {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    /* Faz os botões e caixas de texto ficarem grandes para tocar */
+    input, select, button {
+        width: 100% !important;
+        margin: 5px 0 !important;
+        font-size: 16px !important; /* Letra maior */
+    }
+
+    /* Ajusta cada hábito da lista para não quebrar */
+    li, .habit-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 15px !important;
+    }
+    
+    .actions {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+}
